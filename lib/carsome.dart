@@ -12,7 +12,11 @@ class Carsome extends StatefulWidget {
 }
 
 class _CarsomeState extends State<Carsome> with SingleTickerProviderStateMixin {
-  final List<IconData> _tabs = <IconData>[Icons.looks_one, Icons.looks_two];
+  final List<IconData> _tabs = <IconData>[
+    Icons.looks_one,
+    Icons.looks_two,
+    Icons.looks_3
+  ];
 
   List<Tab> _tabBarItems;
 
@@ -90,10 +94,7 @@ class _CarsomeState extends State<Carsome> with SingleTickerProviderStateMixin {
               create: (context) => albumListBloc,
               child: TabBarView(
                 controller: _tabController,
-                children: <Widget>[
-                  AlbumListView(),
-                  AlbumListView(),
-                ],
+                children: _tabs.map((t) => AlbumListView()).toList(),
               ),
             ),
           )
@@ -147,10 +148,13 @@ class AlbumListView extends StatelessWidget {
                   return Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      Image.network(
-                        _album.thumbnailUrl,
-                        width: 150,
-                        fit: BoxFit.fitWidth,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(4),
+                        child: Image.network(
+                          _album.thumbnailUrl,
+                          width: 150,
+                          fit: BoxFit.fitWidth,
+                        ),
                       ),
                       Text(
                         _album.title,
@@ -159,7 +163,7 @@ class AlbumListView extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.grey,
                         ),
-                      )
+                      ),
                     ],
                   );
                 },
