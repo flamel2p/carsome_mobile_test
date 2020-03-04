@@ -2,6 +2,7 @@ import 'package:carsome_mobile_test/object/album.dart';
 import 'package:flutter/material.dart';
 import 'package:carsome_mobile_test/blocs/album/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Carsome extends StatefulWidget {
   Carsome({Key key}) : super(key: key);
@@ -43,12 +44,25 @@ class _CarsomeState extends State<Carsome> with SingleTickerProviderStateMixin {
     return;
   }
 
+  void launchGitHubRepo() async {
+    final String url = 'https://github.com/flamel2p/carsome_mobile_test';
+    if (await canLaunch(url)) {
+      await launch(url);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter'),
         centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.info),
+            onPressed: () => launchGitHubRepo(),
+          )
+        ],
       ),
       body: Column(
         children: <Widget>[
