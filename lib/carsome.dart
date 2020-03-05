@@ -12,11 +12,7 @@ class Carsome extends StatefulWidget {
 }
 
 class _CarsomeState extends State<Carsome> with SingleTickerProviderStateMixin {
-  final List<IconData> _tabs = <IconData>[
-    Icons.looks_one,
-    Icons.looks_two,
-    Icons.looks_3
-  ];
+  final List<IconData> _tabs = <IconData>[Icons.looks_one, Icons.looks_two];
 
   List<Tab> _tabBarItems;
 
